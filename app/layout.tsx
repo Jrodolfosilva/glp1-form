@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const red = Red_Hat_Display({
+  variable: "--font-red-hat", // nome da CSS variable
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "HD VITA",
@@ -19,8 +15,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children,}: Readonly<{ children: React.ReactNode; }>) {
   return (
-    <html lang="pt-br" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} >
-      <body className="min-h-full flex flex-col ">
+    <html lang="pt-br" className={`${red.variable} h-full antialiased`} >
+      <body className={`${red.variable} min-h-full flex flex-col font-sans`}>
         {children}
       </body>
     </html>
