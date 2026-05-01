@@ -27,10 +27,10 @@ export default function StepMaisInformacoes({
 }: Props) {
   return (
     <div className="mt-5">
-      <div id="sc-mais-informacoes" className="mt-5">
+      <div id="checkpoint-sc-mais-informacoes" className="mt-5">
         <h2 className="text-2xl font-bold mb-4">
           Os profissionais médicos da MEDVi analisam todos os formulários em até 24 horas.
-          <span className="text-red-500 text-sm ml-2 font-normal">sc-mais-informacoes</span>
+          <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-mais-informacoes</span>
         </h2>
         <p className="text-base mb-6">
           Tem alguma informação adicional que gostaria de compartilhar com nossa equipe médica?

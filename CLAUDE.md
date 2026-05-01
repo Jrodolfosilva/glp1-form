@@ -190,3 +190,41 @@ Gera título/subtítulo dinâmicos para telas `sq-{normal,rapido,acelerado}`.
 - Sempre usar `.agents/skills/shadcn` para criação de frontend
 - Estamos em desenvolvimento — nunca dar build
 - Não criar funções de backend ou API endpoints por enquanto
+
+# Scoring System
+
+Arquivo: `lib/scoring.ts` — cálculo de elegibilidade para GLP-1.
+
+## Blockers (score = 0 imediatamente)
+
+| Condição | Motivo |
+|----------|--------|
+| `historico_tireoide` | Risco de carcinoma medular |
+| `pancreatite` | Risco de pancreatite aguda |
+| `gravida` ou `amamentando` | Segurança fetal/neonatal |
+| `pensamentos_suicidas` | Risco psiquiátrico |
+| `cancer` | Revisão manual obrigatória |
+
+## Pontuação (início em 100)
+
+### A. IMC
+- **>= 30**: 0 desconto (elegível)
+- **27-29.9 com comorbidade** (hipertensão, diabetes, apneia, dislipidemia): 0 desconto
+- **27-29.9 sem comorbidade**: -40
+- **< 27**: -70
+
+### B. Histórico Clínico
+- Doença renal/ hepática: -30 cada
+- Diabetes tipo 2 com insulina: -20
+- Condição gastrointestinal / refluxo: -15 cada
+- Depressão: -15
+- Vesícula biliar: -10
+
+### C. Sinais Vitais / Medicações
+- Frequência cardíaca "lento" ou "acelerado": -10
+- Uso de varfarina: -20
+
+## Classificação final
+- **90%+ (Verde)**: Elegível — pode seguir para prescrição padrão
+- **70-89% (Amarelo)**: Atenção — requer revisão médica detalhada
+- **<70% ou Blocker (Vermelho)**: Inelegível ou requer consulta presencial obrigatória

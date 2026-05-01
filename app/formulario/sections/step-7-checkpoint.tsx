@@ -47,7 +47,7 @@ export default function StepCheckpoint({
 
         <h2 className="text-2xl font-bold text-[#111827]">
           Parabéns! Você é um(a) forte candidato(a) para tratamento médico de perda de peso.
-          <span className="text-red-500 text-sm ml-2 font-normal">sc-checkpoint</span>
+          <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-checkpoint</span>
         </h2>
 
         <Separator />

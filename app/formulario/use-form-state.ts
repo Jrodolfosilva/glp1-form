@@ -174,7 +174,9 @@ export function useFormState() {
       scrollToTop();
     } else if (value === "nao") {
       setFluxoAtual("nao");
-      router.push("#");
+      setStepIndex(5);
+      setMaxStep(prev => Math.max(prev, 5));
+      scrollToTop();
     }
   }
 

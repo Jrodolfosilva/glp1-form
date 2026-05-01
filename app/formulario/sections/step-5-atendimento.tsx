@@ -26,10 +26,10 @@ export default function StepAtendimentoUnico({
 
   return (
     <div className="mt-5">
-      <div id="sc-atendimento-unico" className="mt-5">
+      <div id="checkpoint-sc-atendimento-unico" className="mt-5">
         <h2 className="text-2xl font-bold mb-4">
           Suas necessidades são únicas, e seus medicamentos também devem ser!
-          <span className="text-red-500 text-sm ml-2 font-normal">sc-atendimento-unico</span>
+          <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-atendimento-unico</span>
         </h2>
         <p className="text-base mb-2">
           Seu medicamento GLP-1 é personalizado para atender às suas necessidades específicas.
