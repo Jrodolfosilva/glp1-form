@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { CloudUpload, X, TriangleAlert, ChevronLeft, ChevronRight } from "lucide-react";
+import { CloudUpload, X, TriangleAlert, ChevronLeft } from "lucide-react";
 import {
   FileUpload,
   FileUploadDropzone,
@@ -38,6 +38,8 @@ import { useState, useRef, useEffect } from "react";
 import { calcularEstimativa, getIntermediateContent } from "@/lib/estimativas";
 import type { Estimativa } from "@/lib/estimativas";
 import { salvarFormulario, carregarFormulario } from "@/lib/form-storage";
+import { submitCheckEligibility } from "./actions";
+import type { FormDataEntry } from "./actions";
 
 type Option = "normal" | "rapido" | "acelerado" | null;
 
@@ -320,37 +322,123 @@ export default function Glp() {
       if (!email) { setErroValidacao("Informe seu e-mail."); return; }
       if (!telefone) { setErroValidacao("Informe seu telefone."); return; }
       setErroValidacao(null);
-      // Submit final — CHECK Eligibility
-      const payload = {
+      // Submit final — CHECK Eligibility — coletar todos os dados
+      const payload = coletarTodosDados();
+      submitCheckEligibility(payload);
+    }
+  }
+
+  /** Coleta todos os campos do formulário — state + DOM (uncontrolled) */
+  function coletarTodosDados(): Record<string, unknown> {
+    const dataNascimento = `${dataAno}-${String(dataMes).padStart(2, "0")}-${String(dataDia).padStart(2, "0")}`;
+
+    // Textareas condicionais do DOM
+    const getTextareaValue = (id: string): string =>
+      (document.getElementById(id) as HTMLTextAreaElement)?.value ?? "";
+
+    const getCheckbox = (id: string): boolean => {
+      const el = document.getElementById(id);
+      return el?.getAttribute("data-state") === "checked";
+    };
+
+    const pesoInicial = (document.getElementById("peso-inicial") as HTMLInputElement)?.value ?? "";
+    const interesseConsultaAoVivo = (interesseOptions ?? []).includes(
+      "Não tenho certeza — gostaria de discutir as opções de formulação com um profissional clínico por meio de uma consulta virtual ao vivo"
+    );
+
+    return {
+      perfil_usuario: {
         nome,
         sobrenome,
         email,
         telefone,
-        estado,
-        altura: alturaSalva,
-        peso: pesoSalvo,
-        pesoIdeal: pesoIdealSalvo,
+        data_nascimento: dataNascimento,
         sexo,
-        situacaoGravida,
-        situacaoAmamentacao,
-        diabetesTipo2Insulina,
-        diabetesTipo1,
-        anticoagulanteVarfarina,
-        pancreatiteAtual,
-        alergicoMedicamento,
-        hiv,
-        analgesicos,
-        cirurgias,
-        medicamentos,
-        pressao,
-        frequencia,
-        interesseOptions,
-        infoAdicional,
-        infoAdicionalTexto,
-        estimativa,
-      };
-      console.log("CHECK Eligibility payload:", payload);
-    }
+        estado,
+      },
+      biometria: {
+        altura: alturaSalva,
+        peso_atual: pesoSalvo,
+        peso_ideal: pesoIdealSalvo,
+        imc:
+          alturaSalva > 0 && pesoSalvo > 0
+            ? Number((pesoSalvo / ((alturaSalva / 100) ** 2)).toFixed(1))
+            : null,
+        objetivo_perda_kg: estimativa?.kgAPerder ?? 0,
+      },
+      estimativas_tratamento: {
+        semanas_estimadas: estimativa?.semanasEstimadas ?? 0,
+        perda_semanal_estimada_kg: estimativa?.kgPorSemana ?? 0,
+        ritmo: selectedOption,
+        fluxo: "glp1",
+      },
+      historico_clinico: {
+        situacao_atual: {
+          gravida: situacaoGravida,
+          amamentando: situacaoAmamentacao,
+          deu_a_luz_6_meses: getCheckbox("situacao-ultimos-6-meses"),
+          nenhuma_das_acima: getCheckbox("situacao-nenhuma"),
+          doenca_renal_terminal: getCheckbox("saude-renal-terminal"),
+          doenca_hepatica_terminal: getCheckbox("saude-hepatica-terminal"),
+          pensamentos_suicidas: getCheckbox("pensamentos-suicidas"),
+          cancer: getCheckbox("cancer"),
+          condicao_gastrointestinal: getCheckbox("cond-gastrointestinal"),
+          transtorno_dependencia: getCheckbox("transtorno-dependencia"),
+          hospitalizacao_ultimo_ano: getCheckbox("hospitalizacao-ultimo-ano"),
+        },
+        condicoes_preexistentes: {
+          diabetes_tipo_1: diabetesTipo1,
+          diabetes_tipo_2_insulina: diabetesTipo2Insulina,
+          hipotireoidismo_nao_tratado: getCheckbox("hipotireoidismo-nao-tratado"),
+          doenca_vesicula_biliar: getCheckbox("doenca-vesicula-biliar"),
+          hipertensao: getCheckbox("hipertensao-pressao-alta"),
+          convulsoes: getCheckbox("convulsoes"),
+          glaucoma: getCheckbox("glaucoma"),
+          apneia_sono: getCheckbox("apneia-sono"),
+          historico_tireoide: getCheckbox("historico-tireoide"),
+          gota: getCheckbox("gota"),
+          colesterol_triglicerideos: getCheckbox("colesterol-triglicerideos"),
+          depressao: getCheckbox("depressao"),
+          tumor_infeccao_cerebro_medula: getCheckbox("tumor-infeccao-cerebro-medula"),
+          figado_gorduroso: getCheckbox("doenca-hepatica-gorduroso"),
+          doenca_renal: getCheckbox("doenca-renal"),
+          taquicardia: getCheckbox("taquicardia"),
+          doenca_coronariana_avc: getCheckbox("doenca-coronariana-avc"),
+          intervalo_qt: getCheckbox("intervalo-qt"),
+          refluxo_acido: getCheckbox("refluxo-acido"),
+          asma: getCheckbox("asma"),
+          incontinencia_urinaria: getCheckbox("incontinencia-urinaria"),
+          sop_ovario_policistico: getCheckbox("sop"),
+          baixa_testosterona: getCheckbox("baixa-testosterona"),
+          osteoartrite: getCheckbox("osteoartrite"),
+          constipacao: getCheckbox("constipacao"),
+          pancreatite: pancreatiteAtual,
+          hiv,
+        },
+        medicamentos_e_alergias: {
+          usa_medicamentos_prescritos: medicamentos,
+          lista_medicamentos_prescritos: getTextareaValue("lista-medicamentos-qt8"),
+          lista_medicamentos_cirurgia: getTextareaValue("lista-medicamentos-cirurgias"),
+          ja_fez_cirurgia_perda_peso: cirurgias,
+          alergico_medicamento: alergicoMedicamento,
+          info_alergia: getTextareaValue("info-alergia"),
+          usa_anticoagulante_varfarina: anticoagulanteVarfarina,
+          usa_analgesicos_opiaceos: analgesicos,
+          info_analgesicos: getTextareaValue("informacoes-analgesicos"),
+          pressao_arterial: pressao,
+          frequencia_cardiaca: frequencia,
+        },
+      },
+      experiencia_glp1: {
+        ja_usou_glp1: descricaoGlp1,
+        ultima_dose: ultimaDose,
+        peso_inicial_glp1: pesoInicial ? Number(pesoInicial) : null,
+        concorda_nao_empilhar: concordaPrograma,
+        interesses_personalizacao: interesseOptions,
+        interesse_consulta_ao_vivo: interesseConsultaAoVivo,
+        info_adicional: infoAdicional === "sim" ? infoAdicionalTexto : null,
+      },
+    };
   }
 
   return (
@@ -1202,13 +1290,13 @@ export default function Glp() {
               </RadioGroup>
               {cirurgias === "sim" && (
                 <>
-              <Label htmlFor="lista-medicamentos" className="text-base mb-2">
+              <Label htmlFor="lista-medicamentos-cirurgias" className="text-base mb-2">
                 Por favor, liste os medicamentos que lhe foram prescritos:
               </Label>
               <Textarea
                 className="input-default w-full h-37.5 bg-white"
-                id="lista-medicamentos"
-                name="lista-medicamentos"
+                id="lista-medicamentos-cirurgias"
+                name="lista-medicamentos-cirurgias"
                 placeholder="Escreva aqui..."
               />
               </>
@@ -1253,15 +1341,15 @@ export default function Glp() {
               </RadioGroup>
               {medicamentos === "sim" && (
                 <>
-              <Label htmlFor="lista-medicamentos" className="text-base mb-2">
+              <Label htmlFor="lista-medicamentos-qt8" className="text-base mb-2">
                 Por favor, liste os medicamentos que lhe foram prescritos:
               </Label>
               <Textarea
                 className="input-default w-full h-37.5 bg-white"
                 rows={10}
                 cols={60}
-                id="lista-medicamentos"
-                name="lista-medicamentos"
+                id="lista-medicamentos-qt8"
+                name="lista-medicamentos-qt8"
                 placeholder="Escreva aqui..."
               />
               </>
@@ -1493,15 +1581,6 @@ export default function Glp() {
                 {stepIndex === 6 && "Mais informações"}
                 {stepIndex === 7 && "Revisão final"}
               </span>
-              <button
-                type="button"
-                onClick={goForward}
-                disabled={stepIndex >= maxStep}
-                className="flex items-center gap-1 text-sm font-medium text-[#111827] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-              >
-                Avançar
-                <ChevronRight className="size-5" />
-              </button>
             </div>
             <Separator />
 
