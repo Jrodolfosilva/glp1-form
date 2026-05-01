@@ -14,6 +14,7 @@ import StepDetalhesGlp1 from "./sections/step-4-detalhes-glp1";
 import StepAtendimentoUnico from "./sections/step-5-atendimento";
 import StepMaisInformacoes from "./sections/step-6-mais-informacoes";
 import StepCheckpoint from "./sections/step-7-checkpoint";
+import StepDiferente from "./sections/step-8-diferente";
 
 export default function Glp() {
   const f = useFormState();
@@ -93,6 +94,7 @@ export default function Glp() {
                 {f.stepIndex === 5 && "Atendimento único"}
                 {f.stepIndex === 6 && "Mais informações"}
                 {f.stepIndex === 7 && "Revisão final"}
+                {f.stepIndex === 8 && "Medicação anterior"}
               </span>
             </div>
             <Separator />
@@ -186,6 +188,27 @@ export default function Glp() {
                 email={f.email} setEmail={f.setEmail}
                 telefone={f.telefone} setTelefone={f.setTelefone}
                 erroValidacao={f.erroValidacao}
+              />
+            )}
+
+            {f.stepIndex === 8 && (
+              <StepDiferente
+                descricaoDiferente={f.descricaoDiferente}
+                setDescricaoDiferente={f.setDescricaoDiferente}
+                pesoInicialDiferente={f.pesoInicialDiferente}
+                setPesoInicialDiferente={f.setPesoInicialDiferente}
+                concordaDiferente={f.concordaDiferente}
+                setConcordaDiferente={f.setConcordaDiferente}
+                erroStep={f.erroStep}
+                onNext={() => {
+                  if (!f.descricaoDiferente) { f.setErroStep("Preencha a descrição do medicamento."); return; }
+                  if (!f.pesoInicialDiferente) { f.setErroStep("Informe seu peso inicial."); return; }
+                  if (!f.concordaDiferente) { f.setErroStep("Você precisa responder se concorda em obter medicamentos somente por este programa."); return; }
+                  f.setErroStep(null);
+                  f.scrollToTop();
+                  f.setStepIndex(5);
+                  f.setMaxStep(prev => Math.max(prev, 5));
+                }}
               />
             )}
           </>

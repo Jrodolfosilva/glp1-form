@@ -53,6 +53,12 @@ export function useFormState() {
   const [erroValidacao, setErroValidacao] = useState<string | null>(null);
   const [erroStep, setErroStep] = useState<string | null>(null);
 
+  // Fluxo 2 — "Sim, tomei um medicamento diferente"
+  const [fluxoAtual, setFluxoAtual] = useState<"glp1" | "diferente" | "nao" | null>(null);
+  const [descricaoDiferente, setDescricaoDiferente] = useState("");
+  const [pesoInicialDiferente, setPesoInicialDiferente] = useState("");
+  const [concordaDiferente, setConcordaDiferente] = useState<string | null>(null);
+
   const alturaRef = useRef<HTMLInputElement>(null);
   const pesoRef = useRef<HTMLInputElement>(null);
   const pesoIdealRef = useRef<HTMLInputElement>(null);
@@ -94,6 +100,10 @@ export function useFormState() {
       if (typeof saved.ultimaDose === "string") setUltimaDose(saved.ultimaDose);
       if (typeof saved.concordaPrograma === "string" || saved.concordaPrograma === null) setConcordaPrograma(saved.concordaPrograma);
       if (typeof saved.nenhumProblemaAcima === "boolean") setNenhumProblemaAcima(saved.nenhumProblemaAcima);
+      if (typeof saved.descricaoDiferente === "string") setDescricaoDiferente(saved.descricaoDiferente);
+      if (typeof saved.pesoInicialDiferente === "string") setPesoInicialDiferente(saved.pesoInicialDiferente);
+      if (typeof saved.concordaDiferente === "string" || saved.concordaDiferente === null) setConcordaDiferente(saved.concordaDiferente);
+      if (saved.fluxoAtual === "glp1" || saved.fluxoAtual === "diferente" || saved.fluxoAtual === "nao") setFluxoAtual(saved.fluxoAtual);
     }
   }, []);
 
@@ -108,6 +118,7 @@ export function useFormState() {
       nome, sobrenome, estado, email, telefone,
       dataDia, dataMes, dataAno, descricaoGlp1, ultimaDose, concordaPrograma, nenhumProblemaAcima,
       selectedOption, estimativa, alturaSalva, pesoSalvo, pesoIdealSalvo,
+      descricaoDiferente, pesoInicialDiferente, concordaDiferente, fluxoAtual,
     });
   }, [
     sexo, situacaoGravida, situacaoAmamentacao,
@@ -118,6 +129,7 @@ export function useFormState() {
     nome, sobrenome, estado, email, telefone,
     dataDia, dataMes, dataAno, descricaoGlp1, ultimaDose, concordaPrograma, nenhumProblemaAcima,
     selectedOption, estimativa, alturaSalva, pesoSalvo, pesoIdealSalvo,
+    descricaoDiferente, pesoInicialDiferente, concordaDiferente, fluxoAtual,
   ]);
 
   // Navigation
@@ -151,12 +163,17 @@ export function useFormState() {
 
   function handleFinalOption(value: string) {
     if (value === "glp1") {
+      setFluxoAtual("glp1");
       setStepIndex(3);
       setMaxStep(prev => Math.max(prev, 3));
       scrollToTop();
     } else if (value === "diferente") {
-      router.push("#");
+      setFluxoAtual("diferente");
+      setStepIndex(8);
+      setMaxStep(prev => Math.max(prev, 8));
+      scrollToTop();
     } else if (value === "nao") {
+      setFluxoAtual("nao");
       router.push("#");
     }
   }
@@ -384,6 +401,10 @@ export function useFormState() {
     nenhumProblemaAcima, setNenhumProblemaAcima,
     erroValidacao, setErroValidacao,
     erroStep, setErroStep,
+    fluxoAtual, setFluxoAtual,
+    descricaoDiferente, setDescricaoDiferente,
+    pesoInicialDiferente, setPesoInicialDiferente,
+    concordaDiferente, setConcordaDiferente,
     // Refs
     alturaRef, pesoRef, pesoIdealRef,
     // Handlers
