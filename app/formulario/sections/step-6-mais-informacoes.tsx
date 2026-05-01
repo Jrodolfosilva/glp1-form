@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/field";
 import { TriangleAlert } from "lucide-react";
 import Image from "next/image";
+import { AnimatedSection, AnimatedTitle, AnimatedText, AnimatedOption } from "../animation-variants";
 
 type Props = {
   infoAdicional: string | null;
@@ -27,33 +28,41 @@ export default function StepMaisInformacoes({
 }: Props) {
   return (
     <div className="mt-5">
-      <div id="checkpoint-sc-mais-informacoes" className="mt-5">
-        <h2 className="text-2xl font-bold mb-4">
-          Os profissionais médicos da MEDVi analisam todos os formulários em até 24 horas.
-          <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-mais-informacoes</span>
-        </h2>
-        <p className="text-base mb-6">
-          Tem alguma informação adicional que gostaria de compartilhar com nossa equipe médica?
-        </p>
+      <AnimatedSection id="checkpoint-sc-mais-informacoes" className="mt-5">
+        <AnimatedTitle>
+          <h2 className="text-2xl font-bold mb-4">
+            Os profissionais médicos da MEDVi analisam todos os formulários em até 24 horas.
+            <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-mais-informacoes</span>
+          </h2>
+        </AnimatedTitle>
+        <AnimatedText>
+          <p className="text-base mb-6">
+            Tem alguma informação adicional que gostaria de compartilhar com nossa equipe médica?
+          </p>
+        </AnimatedText>
         <RadioGroup className="flex gap-4" value={infoAdicional ?? ""} onValueChange={(v) => setInfoAdicional(v)}>
-          <FieldLabel htmlFor="info-adicional-nao" className="radio-card">
-            <Field orientation="vertical" className="h-35">
-              <FieldContent className="flex flex-col items-center gap-2 justify-center">
-                <Image alt="" src="/no.svg" width={30} height={30} />
-                <FieldTitle>Não</FieldTitle>
-              </FieldContent>
-              <RadioGroupItem value="nao" id="info-adicional-nao" className="hidden" />
-            </Field>
-          </FieldLabel>
-          <FieldLabel htmlFor="info-adicional-sim" className="radio-card">
-            <Field orientation="vertical" className="h-35">
-              <FieldContent className="flex flex-col items-center gap-2 justify-center">
-                <Image alt="" src="/yes.svg" width={30} height={30} />
-                <FieldTitle>Sim</FieldTitle>
-              </FieldContent>
-              <RadioGroupItem value="sim" id="info-adicional-sim" className="hidden" />
-            </Field>
-          </FieldLabel>
+          <AnimatedOption className="w-1/2">
+            <FieldLabel htmlFor="info-adicional-nao" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
+                  <Image alt="" src="/no.svg" width={30} height={30} />
+                  <FieldTitle>Não</FieldTitle>
+                </FieldContent>
+                <RadioGroupItem value="nao" id="info-adicional-nao" className="hidden" />
+              </Field>
+            </FieldLabel>
+          </AnimatedOption>
+          <AnimatedOption className="w-1/2">
+            <FieldLabel htmlFor="info-adicional-sim" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
+                  <Image alt="" src="/yes.svg" width={30} height={30} />
+                  <FieldTitle>Sim</FieldTitle>
+                </FieldContent>
+                <RadioGroupItem value="sim" id="info-adicional-sim" className="hidden" />
+              </Field>
+            </FieldLabel>
+          </AnimatedOption>
         </RadioGroup>
         {infoAdicional === "sim" && (
           <>
@@ -69,7 +78,7 @@ export default function StepMaisInformacoes({
             />
           </>
         )}
-      </div>
+      </AnimatedSection>
 
       <Separator className="mt-8" />
       <button type="button" onClick={onNext} className="submit cursor-pointer">Próximo</button>

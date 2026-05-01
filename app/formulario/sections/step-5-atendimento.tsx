@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/field";
 import { TriangleAlert } from "lucide-react";
 import { interesseOpcoes } from "../data";
+import { AnimatedSection, AnimatedTitle, AnimatedText, AnimatedOption } from "../animation-variants";
 
 type Props = {
   interesseOptions: string[];
@@ -26,32 +27,40 @@ export default function StepAtendimentoUnico({
 
   return (
     <div className="mt-5">
-      <div id="checkpoint-sc-atendimento-unico" className="mt-5">
-        <h2 className="text-2xl font-bold mb-4">
-          Suas necessidades são únicas, e seus medicamentos também devem ser!
-          <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-atendimento-unico</span>
-        </h2>
-        <p className="text-base mb-2">
-          Seu medicamento GLP-1 é personalizado para atender às suas necessidades específicas.
-        </p>
-        <p className="text-base mb-6">
-          Por favor, selecione as opções abaixo nas quais você tem interesse.
-        </p>
+      <AnimatedSection id="checkpoint-sc-atendimento-unico" className="mt-5">
+        <AnimatedTitle>
+          <h2 className="text-2xl font-bold mb-4">
+            Suas necessidades são únicas, e seus medicamentos também devem ser!
+            <span className="text-red-500 text-sm ml-2 font-normal">checkpoint-sc-atendimento-unico</span>
+          </h2>
+        </AnimatedTitle>
+        <AnimatedText>
+          <p className="text-base mb-2">
+            Seu medicamento GLP-1 é personalizado para atender às suas necessidades específicas.
+          </p>
+        </AnimatedText>
+        <AnimatedText>
+          <p className="text-base mb-6">
+            Por favor, selecione as opções abaixo nas quais você tem interesse.
+          </p>
+        </AnimatedText>
 
         <div className="grid gap-4">
           {interesseOpcoes.map((option) => (
-            <FieldLabel key={option}>
-              <Field orientation="horizontal" className="input-default">
-                <Checkbox
-                  checked={interesseOptions.includes(option)}
-                  onCheckedChange={() => toggleInteresse(option)}
-                />
-                <FieldContent><FieldTitle>{option}</FieldTitle></FieldContent>
-              </Field>
-            </FieldLabel>
+            <AnimatedOption key={option}>
+              <FieldLabel>
+                <Field orientation="horizontal" className="input-default">
+                  <Checkbox
+                    checked={interesseOptions.includes(option)}
+                    onCheckedChange={() => toggleInteresse(option)}
+                  />
+                  <FieldContent><FieldTitle>{option}</FieldTitle></FieldContent>
+                </Field>
+              </FieldLabel>
+            </AnimatedOption>
           ))}
         </div>
-      </div>
+      </AnimatedSection>
 
       <Separator className="mt-8" />
       {interesseOptions.includes(consultaAoVivo) && (

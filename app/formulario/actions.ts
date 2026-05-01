@@ -11,7 +11,7 @@ export type FormDataEntry = {
 export async function submitCheckEligibility(
   dados: Record<string, unknown>
 ): Promise<{ success: boolean; score?: number; level?: string }> {
-  const payload = dados as Record<string, any>;
+  const payload = dados as Record<string, any>
 
   // Extrair campos para o score
   const scoreInput: ScoreInput = {

@@ -24,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br" className={`${redHatDisplay.variable} ${redHatText.variable} h-full antialiased`}>
-  <body className={`${redHatDisplay.variable} ${redHatText.variable} min-h-full flex flex-col font-sans pb-20 bg-gray-50`}>
+  <body className={`${redHatDisplay.variable} ${redHatText.variable} min-h-full flex flex-col font-sans pb-20 bg-gray-50 px-4 sm:px-6 lg:px-8`}>
     {children}
   </body>
 </html>

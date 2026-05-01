@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/.openclaude
+/.claude-plugin
+/.factory
+/.agents
+CLAUDE.node_modules
+/plugins
+/scripts
+
