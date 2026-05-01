@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
-import { Red_Hat_Display } from "next/font/google";
+import { Red_Hat_Display, Red_Hat_Text } from "next/font/google";
 import "./globals.css";
 
-const red = Red_Hat_Display({
-  variable: "--font-red-hat", // nome da CSS variable
+const redHatDisplay = Red_Hat_Display({
+  variable: "--font-red-hat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
 });
 
+const redHatText = Red_Hat_Text({
+  variable: "--font-red-hat-text",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "HD VITA",
   description: "Emagrecimento e Longevidade ",
 };
 
-export default function RootLayout({ children,}: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-br" className={`${red.variable} h-full antialiased`} >
-      <body className={`${red.variable} min-h-full flex flex-col font-sans`}>
-        {children}
-      </body>
-    </html>
+    <html lang="pt-br" className={`${redHatDisplay.variable} ${redHatText.variable} h-full antialiased`}>
+  <body className={`${redHatDisplay.variable} ${redHatText.variable} min-h-full flex flex-col font-sans pb-20 bg-gray-50`}>
+    {children}
+  </body>
+</html>
   );
 }

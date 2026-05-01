@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -46,8 +49,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --font-sans: var(--font-red-hat), sans-serif;
-
+  --font-sans: var(--font-red-hat), sans-serif;        /* títulos */
+--font-body: var(--font-red-hat-text), sans-serif;   /* corpo */
 }
 
 :root {
@@ -129,5 +132,71 @@
   html {
     @apply font-sans;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: revert;
+    font-weight: revert;
+    font-family: var(--font-red-hat), sans-serif;
+  }
 }
 
+@layer components {
+  .input-default {
+    @apply bg-white rounded-md p-4 min-h-[50px] flex !items-center border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#dde3eb];
+  }
+
+  .radio-card {
+    @apply bg-white rounded-md p-4 min-h-[50px] flex !items-center border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none cursor-pointer;
+  }
+}
+
+.radio-card:has([data-state="checked"]) {
+  background-color: white !important;
+  border: 2px solid #4671ff !important;
+  box-shadow: 0 4px 20px rgba(49, 171, 232, 0.3) !important;
+}
+
+.radio-card:has([data-state="checked"]) *,
+.radio-card:has([data-state="checked"]) [data-slot="field"],
+.radio-card:has([data-state="checked"]) [data-slot="field-content"] {
+  background-color: white !important;
+  background: white !important;
+}
+
+.checked-border:has([data-state="checked"]) {
+  background-color: white !important;
+  border: 2px solid #4671ff !important;
+  box-shadow: 0 4px 20px rgba(49, 171, 232, 0.3) !important;
+}
+
+.checked-border:has([data-state="checked"]) *,
+.checked-border:has([data-state="checked"]) [data-slot="field"],
+.checked-border:has([data-state="checked"]) [data-slot="field-content"] {
+  background-color: white !important;
+  background: white !important;
+}
+
+.submit {
+  background-color: var(
+    --token-0cdd9586-a6dc-4343-acfe-771b62a6decf,
+    rgb(46, 147, 111)
+  );
+  background-image: none;
+  border: rgba(0, 153, 255, 0);
+  color: rgb(255, 255, 255);
+  padding: 16px;
+  border-radius: 16px;
+  user-select: none;
+  cursor: pointer;
+  font-family: "Red Hat Text", "Red Hat Text Placeholder", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 1.2em;
+  width: 100%;
+}

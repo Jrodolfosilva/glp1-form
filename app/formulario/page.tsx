@@ -54,16 +54,31 @@ export default function Glp() {
             <div className="flex gap-4">
               <div className="flex-1 space-y-2">
                 <Label htmlFor="altura">Altura</Label>
-                <Input id="altura" type="number" placeholder="Ex: 170" />
+                <Input
+                  id="altura"
+                  type="number"
+                  placeholder="Ex: 170"
+                  className="bg-white rounded-md p-4 h-auto border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#dde3eb]"
+                />
               </div>
               <div className="flex-1 space-y-2">
                 <Label htmlFor="altura">Peso</Label>
-                <Input id="altura" type="number" placeholder="Ex: 90" />
+                <Input
+                  id="altura"
+                  type="number"
+                  placeholder="Ex: 90"
+                  className="bg-white rounded-md p-4 h-auto border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#dde3eb]"
+                />
               </div>
             </div>
             <div className="flex-1 space-y-2">
               <Label htmlFor="pesoIdeal">Qual é o seu peso ideal?</Label>
-              <Input id="pesoIdeal" type="number" placeholder="Ex: 60" />
+              <Input
+                id="pesoIdeal"
+                type="number"
+                placeholder="Ex: 60"
+                className="bg-white rounded-md p-4 h-auto border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#dde3eb]"
+              />
             </div>
           </div>
         </div>
@@ -76,18 +91,18 @@ export default function Glp() {
           <h2 className="text-2xl font-bold mb-4">Você é homem ou mulher?</h2>
           <div className="grid gap-4 ">
             <RadioGroup className="flex gap-4">
-              <FieldLabel htmlFor="homem" className="cursor-pointer">
-                <Field orientation="vertical">
-                  <FieldContent className="flex flex-col items-center gap-2">
+              <FieldLabel htmlFor="homem" className="radio-card">
+                <Field orientation="vertical" className=" h-35">
+                  <FieldContent className="flex flex-col items-center gap-2 justify-center ">
                     <Image alt="" src={"/man.svg"} width={80} height={80} />
                     <FieldTitle>Homen</FieldTitle>
                   </FieldContent>
                   <RadioGroupItem value="homem" id="homem" className="hidden" />
                 </Field>
               </FieldLabel>
-              <FieldLabel htmlFor="mulher" className="cursor-pointer">
-                <Field orientation="vertical">
-                  <FieldContent className="flex flex-col items-center gap-2">
+              <FieldLabel htmlFor="mulher" className="radio-card">
+                <Field orientation="vertical" className=" h-35 cursor-pointer">
+                  <FieldContent className="flex flex-col items-center gap-2 justify-center">
                     <Image alt="" src={"/woman.svg"} width={80} height={80} />
                     <FieldTitle>Mulher</FieldTitle>
                   </FieldContent>
@@ -115,8 +130,11 @@ export default function Glp() {
               <div className="flex gap-4">
                 <div className="flex-1 space-y-2">
                   <Label htmlFor="dia">Dia</Label>
-                  <Select className="w-full">
-                    <SelectTrigger id="dia" className="w-full">
+                  <Select>
+                    <SelectTrigger
+                      id="dia"
+                      className="w-full input-default bg-white p-6 min-h-14"
+                    >
                       <SelectValue placeholder="Dia" />
                     </SelectTrigger>
                     <SelectContent>
@@ -133,7 +151,10 @@ export default function Glp() {
                 <div className="flex-1 space-y-2">
                   <Label htmlFor="mes">Mês</Label>
                   <Select>
-                    <SelectTrigger id="mes" className="w-full">
+                    <SelectTrigger
+                      id="mes"
+                      className="w-full input-default bg-white p-6 min-h-14"
+                    >
                       <SelectValue placeholder="Mês" />
                     </SelectTrigger>
                     <SelectContent>
@@ -160,9 +181,14 @@ export default function Glp() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex-1 space-y-2">
+                <div className="flex-1 space-y-2 ">
                   <Label htmlFor="ano">Ano</Label>
-                  <Input id="ano" type="number" placeholder="Ex: 1990" />
+                  <Input
+                    id="ano"
+                    type="number"
+                    placeholder="Ex: 1990"
+                    className="bg-white rounded-md p-4 h-auto border border-[#dde3eb] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#dde3eb]"
+                  />
                 </div>
               </div>
             </div>
@@ -178,7 +204,7 @@ export default function Glp() {
           </h2>
           <div className="grid gap-4">
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="situacao-gravida" name="situacao-gravida" />
                 <FieldContent>
                   <FieldTitle>
@@ -189,7 +215,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="situacao-amamentacao"
                   name="situacao-amamentacao"
@@ -202,7 +228,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="situacao-ultimos-6-meses"
                   name="situacao-ultimos-6-meses"
@@ -215,7 +241,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="situacao-nenhuma" name="situacao-nenhuma" />
                 <FieldContent>
                   <FieldTitle>Nenhuma das acima</FieldTitle>
@@ -234,7 +260,10 @@ export default function Glp() {
           </p>
           <div className="grid gap-4">
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field
+                orientation="horizontal"
+                className="input-default flex items-center"
+              >
                 <Checkbox
                   id="saude-renal-terminal"
                   name="saude-renal-terminal"
@@ -248,7 +277,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="saude-hepatica-terminal"
                   name="saude-hepatica-terminal"
@@ -261,7 +290,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="pensamentos-suicidas"
                   name="pensamentos-suicidas"
@@ -275,7 +304,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="cancer" name="cancer" />
                 <FieldContent>
                   <FieldTitle>
@@ -288,7 +317,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="cond-gastrointestinal"
                   name="cond-gastrointestinal"
@@ -302,7 +331,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="transtorno-dependencia"
                   name="transtorno-dependencia"
@@ -326,7 +355,7 @@ export default function Glp() {
           </p>
           <div className="grid gap-4">
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="hipotireoidismo-nao-tratado"
                   name="hipotireoidismo-nao-tratado"
@@ -337,7 +366,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="doenca-vesicula-biliar"
                   name="doenca-vesicula-biliar"
@@ -348,7 +377,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="hipertensao-pressao-alta"
                   name="hipertensao-pressao-alta"
@@ -359,7 +388,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="convulsoes" name="convulsoes" />
                 <FieldContent>
                   <FieldTitle>Convulsões</FieldTitle>
@@ -367,7 +396,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="glaucoma" name="glaucoma" />
                 <FieldContent>
                   <FieldTitle>Glaucoma</FieldTitle>
@@ -375,7 +404,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="apneia-sono" name="apneia-sono" />
                 <FieldContent>
                   <FieldTitle>Apneia do sono</FieldTitle>
@@ -383,7 +412,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="diabetes-tipo-2-insulina"
                   name="diabetes-tipo-2-insulina"
@@ -394,7 +423,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="diabetes-tipo-1" name="diabetes-tipo-1" />
                 <FieldContent>
                   <FieldTitle>Diabetes Tipo 1</FieldTitle>
@@ -402,7 +431,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="anticoagulante-varfarina"
                   name="anticoagulante-varfarina"
@@ -415,7 +444,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="pancreatite-atual" name="pancreatite-atual" />
                 <FieldContent>
                   <FieldTitle>
@@ -425,7 +454,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="historico-tireoide" name="historico-tireoide" />
                 <FieldContent>
                   <FieldTitle>
@@ -437,7 +466,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="gota" name="gota" />
                 <FieldContent>
                   <FieldTitle>Gota</FieldTitle>
@@ -445,7 +474,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="colesterol-triglicerideos"
                   name="colesterol-triglicerideos"
@@ -456,7 +485,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="depressao" name="depressao" />
                 <FieldContent>
                   <FieldTitle>Depressão</FieldTitle>
@@ -464,7 +493,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="tumor-infeccao-cerebro-medula"
                   name="tumor-infeccao-cerebro-medula"
@@ -477,7 +506,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="doenca-hepatica-gorduroso"
                   name="doenca-hepatica-gorduroso"
@@ -490,7 +519,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="doenca-renal" name="doenca-renal" />
                 <FieldContent>
                   <FieldTitle>Doença renal</FieldTitle>
@@ -498,7 +527,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="taquicardia" name="taquicardia" />
                 <FieldContent>
                   <FieldTitle>
@@ -508,7 +537,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="doenca-coronariana-avc"
                   name="doenca-coronariana-avc"
@@ -522,7 +551,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="alergico-medicamento"
                   name="alergico-medicamento"
@@ -533,7 +562,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="intervalo-qt" name="intervalo-qt" />
                 <FieldContent>
                   <FieldTitle>
@@ -544,7 +573,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="hospitalizacao-ultimo-ano"
                   name="hospitalizacao-ultimo-ano"
@@ -555,7 +584,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="hiv" name="hiv" />
                 <FieldContent>
                   <FieldTitle>
@@ -565,7 +594,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="refluxo-acido" name="refluxo-acido" />
                 <FieldContent>
                   <FieldTitle>Refluxo ácido</FieldTitle>
@@ -573,7 +602,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="asma" name="asma" />
                 <FieldContent>
                   <FieldTitle>Asma/Doença</FieldTitle>
@@ -581,7 +610,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="incontinencia-urinaria"
                   name="incontinencia-urinaria"
@@ -592,7 +621,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="sop" name="sop" />
                 <FieldContent>
                   <FieldTitle>
@@ -602,7 +631,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="baixa-testosterona" name="baixa-testosterona" />
                 <FieldContent>
                   <FieldTitle>
@@ -612,7 +641,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="osteoartrite" name="osteoartrite" />
                 <FieldContent>
                   <FieldTitle>Osteoartrite</FieldTitle>
@@ -620,7 +649,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox id="constipacao" name="constipacao" />
                 <FieldContent>
                   <FieldTitle>Constipação</FieldTitle>
@@ -628,7 +657,7 @@ export default function Glp() {
               </Field>
             </FieldLabel>
             <FieldLabel>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className="input-default">
                 <Checkbox
                   id="nenhum-problema-acima"
                   name="nenhum-problema-acima"
@@ -649,40 +678,34 @@ export default function Glp() {
             Nos últimos 3 meses, você utilizou analgésicos opiáceos e/ou drogas
             ilícitas à base de opiáceos?
           </h3>
-          <div className="flex gap-4">
-            <FieldLabel
-              htmlFor="analgesicos-ilicitos-nao"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+          <RadioGroup className="flex gap-4" name="analgesicos-ilicitos">
+            <FieldLabel htmlFor="analgesicos-nao" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/no.svg" width={30} height={30} />
                   <FieldTitle>Não</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="analgesicos-ilicitos-nao"
-                  name="analgesicos-ilicitos"
+                <RadioGroupItem
+                  value="nao"
+                  id="analgesicos-nao"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel
-              htmlFor="analgesicos-ilicitos-sim"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+            <FieldLabel htmlFor="analgesicos-sim" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/yes.svg" width={30} height={30} />
                   <FieldTitle>Sim</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="analgesicos-ilicitos-sim"
-                  name="analgesicos-ilicitos"
+                <RadioGroupItem
+                  value="sim"
+                  id="analgesicos-sim"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-          </div>
+          </RadioGroup>
           <Label htmlFor="informacoes-analgesicos" className="text-base mb-2">
             Por favor, forneça mais informações.
           </Label>
@@ -690,6 +713,7 @@ export default function Glp() {
             id="informacoes-analgesicos"
             name="informacoes-analgesicos"
             placeholder="Escreva aqui..."
+            className="input-default w-full h-37.5 bg-white"
           />
         </div>
         <Separator className="mt-8" />
@@ -698,44 +722,39 @@ export default function Glp() {
           <h3 className="text-2xl mb-4">
             Você já se submeteu a cirurgias para perda de peso anteriormente?
           </h3>
-          <div className="flex gap-4">
-            <FieldLabel
-              htmlFor="medicamentos-prescritos-nao"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+          <RadioGroup className="flex gap-4" name="cirurgias-peso">
+            <FieldLabel htmlFor="cirurgias-nao" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/no.svg" width={30} height={30} />
                   <FieldTitle>Não</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="medicamentos-prescritos-nao"
-                  name="medicamentos-prescritos"
+                <RadioGroupItem
+                  value="nao"
+                  id="cirurgias-nao"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel
-              htmlFor="medicamentos-prescritos-sim"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+            <FieldLabel htmlFor="cirurgias-sim" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/yes.svg" width={30} height={30} />
                   <FieldTitle>Sim</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="medicamentos-prescritos-sim"
-                  name="medicamentos-prescritos"
+                <RadioGroupItem
+                  value="sim"
+                  id="cirurgias-sim"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-          </div>
+          </RadioGroup>
           <Label htmlFor="lista-medicamentos" className="text-base mb-2">
             Por favor, liste os medicamentos que lhe foram prescritos:
           </Label>
           <Textarea
+            className="input-default w-full h-37.5 bg-white"
             id="lista-medicamentos"
             name="lista-medicamentos"
             placeholder="Escreva aqui..."
@@ -744,54 +763,51 @@ export default function Glp() {
 
         <Separator className="mt-8" />
         {/* qt-8 Você está tomando algum medicamento com receita médica atualmente?*/}
+
         <div id="qt-7" className="mt-5">
           <h3 className="text-2xl mb-4">
             Você está tomando algum medicamento com receita médica atualmente?
           </h3>
-          <div className="flex gap-4">
-            <FieldLabel
-              htmlFor="medicamentos-prescritos-nao"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+          <RadioGroup className="flex gap-4" name="medicamentos-prescritos">
+            <FieldLabel htmlFor="medicamentos-nao" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/no.svg" width={30} height={30} />
                   <FieldTitle>Não</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="medicamentos-prescritos-nao"
-                  name="medicamentos-prescritos"
+                <RadioGroupItem
+                  value="nao"
+                  id="medicamentos-nao"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel
-              htmlFor="medicamentos-prescritos-sim"
-              className="cursor-pointer"
-            >
-              <Field orientation="vertical">
-                <FieldContent className="flex flex-col items-center gap-2">
+            <FieldLabel htmlFor="medicamentos-sim" className="radio-card">
+              <Field orientation="vertical" className="h-35">
+                <FieldContent className="flex flex-col items-center gap-2 justify-center">
                   <Image alt="" src="/yes.svg" width={30} height={30} />
                   <FieldTitle>Sim</FieldTitle>
                 </FieldContent>
-                <Checkbox
-                  id="medicamentos-prescritos-sim"
-                  name="medicamentos-prescritos"
+                <RadioGroupItem
+                  value="sim"
+                  id="medicamentos-sim"
                   className="hidden"
                 />
               </Field>
             </FieldLabel>
-          </div>
+          </RadioGroup>
           <Label htmlFor="lista-medicamentos" className="text-base mb-2">
             Por favor, liste os medicamentos que lhe foram prescritos:
           </Label>
           <Textarea
+            className="input-default w-full h-37.5 bg-white"
+            rows={10}
+            cols={60}
             id="lista-medicamentos"
             name="lista-medicamentos"
             placeholder="Escreva aqui..."
           />
         </div>
-
         <Separator className="mt-8" />
         {/* qt-9 Qual é a sua faixa de pressão arterial? */}
         <div id="qt-9" className="mt-5">
@@ -799,7 +815,10 @@ export default function Glp() {
             Qual é a sua faixa de pressão arterial?
           </h2>
           <RadioGroup className="flex flex-col gap-4">
-            <FieldLabel htmlFor="faixa-normal" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="faixa-normal"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
@@ -814,8 +833,11 @@ export default function Glp() {
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="faixa-elevado" className="cursor-pointer">
-              <Field orientation="horizontal">
+            <FieldLabel
+              htmlFor="faixa-elevado"
+              className="input-default checked-border cursor-pointer"
+            >
+              <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
                     <Image alt="" src="/elevado.svg" width={30} height={30} />
@@ -831,7 +853,10 @@ export default function Glp() {
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="faixa-hiper1" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="faixa-hiper1"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
@@ -848,7 +873,10 @@ export default function Glp() {
                 />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="faixa-hiper2" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="faixa-hiper2"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
@@ -868,59 +896,97 @@ export default function Glp() {
           </RadioGroup>
         </div>
         <Separator className="mt-8" />
-                {/* qt-10 Qual é a sua frequência cardíaca média em repouso?
- */}
 
         {/* qt-10 Qual é a sua frequência cardíaca média em repouso? */}
         <div id="qt-10" className="mt-5">
-          <h2 className="text-2xl font-bold mb-4">Qual é a sua frequência cardíaca média em repouso?</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Qual é a sua frequência cardíaca média em repouso?
+          </h2>
           <RadioGroup className="flex flex-col gap-4">
-            <FieldLabel htmlFor="freq-lento" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="freq-lento"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
                     <Image alt="" src="/lento.svg" width={30} height={30} />
-                    <FieldTitle className="m-0">&lt;60 batimentos por minuto - Lento</FieldTitle>
+                    <FieldTitle className="m-0">
+                      &lt;60 batimentos por minuto - Lento
+                    </FieldTitle>
                   </div>
                 </FieldContent>
-                <RadioGroupItem value="lento" id="freq-lento" className="hidden" />
+                <RadioGroupItem
+                  value="lento"
+                  id="freq-lento"
+                  className="hidden"
+                />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="freq-normal" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="freq-normal"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
                     <Image alt="" src="/normal.svg" width={30} height={30} />
-                    <FieldTitle className="m-0">60 - 100 batimentos por minuto - Normal</FieldTitle>
+                    <FieldTitle className="m-0">
+                      60 - 100 batimentos por minuto - Normal
+                    </FieldTitle>
                   </div>
                 </FieldContent>
-                <RadioGroupItem value="normal" id="freq-normal" className="hidden" />
+                <RadioGroupItem
+                  value="normal"
+                  id="freq-normal"
+                  className="hidden"
+                />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="freq-rapido" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="freq-rapido"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
                     <Image alt="" src="/rapido.svg" width={30} height={30} />
-                    <FieldTitle className="m-0">101 - 110 batimentos por minuto - Rápido</FieldTitle>
+                    <FieldTitle className="m-0">
+                      101 - 110 batimentos por minuto - Rápido
+                    </FieldTitle>
                   </div>
                 </FieldContent>
-                <RadioGroupItem value="rapido" id="freq-rapido" className="hidden" />
+                <RadioGroupItem
+                  value="rapido"
+                  id="freq-rapido"
+                  className="hidden"
+                />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="freq-acelerado" className="cursor-pointer">
+            <FieldLabel
+              htmlFor="freq-acelerado"
+              className="input-default checked-border cursor-pointer"
+            >
               <Field orientation="vertical">
                 <FieldContent>
                   <div className="flex flex-row items-center gap-2">
                     <Image alt="" src="/acelerado.svg" width={30} height={30} />
-                    <FieldTitle className="m-0">&gt;110 batimentos por minuto - Acelerado</FieldTitle>
+                    <FieldTitle className="m-0">
+                      &gt;110 batimentos por minuto - Acelerado
+                    </FieldTitle>
                   </div>
                 </FieldContent>
-                <RadioGroupItem value="acelerado" id="freq-acelerado" className="hidden" />
+                <RadioGroupItem
+                  value="acelerado"
+                  id="freq-acelerado"
+                  className="hidden"
+                />
               </Field>
             </FieldLabel>
           </RadioGroup>
         </div>
+        <br/>
+        <input type="submit" value="Proximo" className="submit" />
       </form>
     </section>
   );
